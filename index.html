@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éter • Reflexões Contemporâneas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    
+    <style>
+        :root {
+            --primary: #5b21b6;
+            --accent: #c026d3;
+            --text: #1e2937;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            
+            --gradient-1: linear-gradient(135deg, #5b21b6 0%, #c026d3 100%);
+            --gradient-2: linear-gradient(to right, #7c3aed, #db2777);
+            --gradient-3: radial-gradient(circle at 40% 30%, rgba(192, 38, 211, 0.25), transparent 70%);
+            --gradient-hover: linear-gradient(135deg, #c026d3 0%, #5b21b6 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%),
+                        var(--gradient-3);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3.2rem, 8vw, 5.8rem);
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.35rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 520px;
+        }
+
+        .cta {
+            margin-top: 2.5rem;
+            padding: 18px 48px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px -10px rgba(192, 38, 211, 0.4);
+        }
+
+        .cta:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px -15px rgba(139, 92, 246, 0.5);
+        }
+
+        /* SEÇÃO DESTAQUE */
+        .featured {
+            padding: 7rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            max-width: 1280px;
+            margin: 0 auto 3rem;
+            font-size: 2.75rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 9999px;
+        }
+
+        .featured-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px -20px rgba(139, 92, 246, 0.25);
+        }
+
+        .card-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, rgba(30, 27, 75, 0.75));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover .card-img::after { opacity: 1; }
+
+        .card-body {
+            padding: 1.75rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--gradient-1);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+
+        /* RECENTES + SIDEBAR */
+        .main-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 2.6fr 1fr;
+            gap: 4rem;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .small-card {
+            display: flex;
+            gap: 1.25rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px -12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .small-card:hover {
+            transform: translateX(12px);
+        }
+
+        .small-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 14px;
+            background-size: cover;
+            flex-shrink: 0;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .sidebar-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+        }
+
+        .categories a {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .categories a:hover {
+            color: var(--accent);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 6rem 2rem 3rem;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            .hero-content, .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-container { padding: 1rem; }
+            .featured-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">ÉTER</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Artigos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Onde o <span class="gradient-text">pensamento</span> encontra o futuro</h1>
+                <p>Reflexões profundas sobre tecnologia, design, filosofia e o que significa ser humano na era digital.</p>
+                <button class="cta">Explorar agora</button>
+            </div>
+            <img src="https://picsum.photos/id/1015/800/620" alt="Hero" style="width:100%; border-radius: 28px; box-shadow: 0 30px 70px -20px rgba(0,0,0,0.6);">
+        </div>
+    </section>
+
+    <!-- DESTAQUE -->
+    <section class="featured">
+        <h2 class="section-title">Em Destaque</h2>
+        <div class="featured-grid">
+            <article class="card">
+                <div class="card-img" style="background-image: url('https://picsum.photos/id/1016/800/600')"></div>
+                <div class="card-body">
+                    <span class="card-category">Design</span>
+                    <h3>O Renascimento do Minimalismo Digital</h3>
+                    <p style="margin-top: 0.75rem; color: var(--text-light);">12 jun 2026 • 9 min leitura</p>
+                </div>
+            </article>
+            <!-- Repita mais cards conforme necessário -->
+        </div>
+    </section>
+
+    <!-- RECENTES + SIDEBAR -->
+    <div class="main-content">
+        <div>
+            <h2 class="section-title">Artigos Recentes</h2>
+            <div class="posts-grid">
+                <!-- Small cards aqui -->
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <!-- Categorias, Newsletter e Autor com gradientes -->
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Conteúdo do footer -->
+        </div>
+    </footer>
+
+</body>
+</html>
